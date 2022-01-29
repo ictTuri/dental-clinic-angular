@@ -2,10 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../security/auth.service';
-import { ErrorHandler } from '../interfaces/ErrorHandler';
-import { SuccessfulRegister } from '../interfaces/SuccessfulRegister';
 import { LoginUser } from '../models/LoginUser';
-import { RegisterService } from '../services/register.service';
 
 @Component({
   selector: 'app-login',
@@ -29,16 +26,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this._authService.authenticationResultEvent.subscribe(
       result => {
-          const url = this._activatedRoute.snapshot.queryParams['requested'];
-          if (url !== undefined) {
-            this._route.navigateByUrl(url);
-          } else {
-            this._route.navigate(['dashboard']);
-          }
+        const url = this._activatedRoute.snapshot.queryParams['requested'];
+        if (url !== undefined) {
+          this._route.navigateByUrl(url);
+        } else {
+          this._route.navigate(['dashboard']);
+        }
       });
-    if(this._authService.existCookie()){
+    if (this._authService.existCookie()) {
       this._authService.authenticationResultEvent.emit(true);
-    }else{
+    } else {
       this._authService.authenticationResultEvent.emit(false);
     }
   }
@@ -48,9 +45,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this._authService.authenticate(loginUser);
     this.subscription = this._authService.authenticationErrorMessage.subscribe(
       (result: string) => {
-        if(result){
+        if (result) {
           this.loginErrorMessage = result;
-        }else{
+        } else {
           this.loginErrorMessage = '';
         }
       }

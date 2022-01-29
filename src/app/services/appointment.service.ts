@@ -10,8 +10,6 @@ import { Slot } from '../interfaces/Slot';
 })
 export class AppointmentService {
 
-  types: string[] = ['COMPLETE','FILLINGS','COSMETIC','IMPLANTS','ORTHODONTICS','PREVENTATIVE_CARE','PERIODONTAL_THERAPY',
-	'NUTRITIONAL_COUNSELING','ROOT_CANALS','GENERAL'];
   docs: string[] = [];
 
   constructor(
@@ -22,20 +20,24 @@ export class AppointmentService {
     date: new FormControl(),
     startTime: new FormControl(),
     dentist: new FormControl(),
-    type: new FormControl([],[Validators.required])
+    type: new FormControl([], [Validators.required])
   });
 
   populateForm(row: any) {
     this.form.setValue({
       date: row.date,
       startTime: row.visitStart,
-      type: this.types,
-      dentist: this.docs
+      type: 'COMPLETE',
+      dentist: null
     });
     this.docs = row.doctors;
   }
 
-  freeSchedule(): Observable<Slot[]>{
-    return this._http.get<Slot[]>(environment.restUrl+ 'visit/free-schedule', {withCredentials: true});
+  freeSchedule(): Observable<Slot[]> {
+    return this._http.get<Slot[]>(environment.restUrl + 'visit/free-schedule', { withCredentials: true });
+  }
+
+  addSchedule(): Observable<any> {
+    return this._http.post(environment.restUrl + 'visit/rezerve', JSON.stringify(this.form.value), { withCredentials: true, headers: { 'Content-Type': 'application/json' } });
   }
 }

@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  displayedColumns: string[] = ['firstName', 'lastName', 'username', 'email','phone','role'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'username', 'email', 'phone', 'role', 'edito'];
   user: User[] = [];
   dataSource!: MatTableDataSource<User>;
 
@@ -48,6 +48,10 @@ export class UsersComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  updateUser(row: any) {
+
   }
 
   // rezerveAppointement(row: any) {

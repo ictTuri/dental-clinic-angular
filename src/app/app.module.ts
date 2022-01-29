@@ -20,7 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { AuthService } from '../security/auth.service';
@@ -30,6 +30,7 @@ import { UsersComponent } from './dashboard/users/users.component';
 import { UserComponent } from './dashboard/users/user/user.component';
 import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
 import { AppointmentComponent } from './dashboard/appointments/appointment/appointment.component';
+import { UserPopupComponent } from './dashboard/users/user-popup/user-popup.component';
 
 
 const materialImports = [
@@ -54,7 +55,8 @@ const materialImports = [
     UsersComponent,
     UserComponent,
     AppointmentsComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    UserPopupComponent
   ],
   imports: [
     BrowserModule,
