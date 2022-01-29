@@ -1,0 +1,21 @@
+<div>
+    <div>
+        <form #userForm="ngForm" (ngSubmit)="login()">
+            <h3>Login Here</h3>
+            <div *ngIf="loginErrorMessage" role="alert">
+                {{ loginErrorMessage }}
+            </div>
+            <div>
+                <input type="text" required name="credential" [(ngModel)]="credential"
+                    placeholder="Your Credential *" value="" />
+            </div>
+            <div>
+                <input type="password" required name="password" [(ngModel)]="password"
+                    placeholder="Your Password *" value="" />
+            </div>
+            <div>
+                <input type="submit" value="Login" />
+            </div>
+        </form>
+    </div>
+</div>
