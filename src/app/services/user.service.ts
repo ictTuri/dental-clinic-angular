@@ -13,15 +13,11 @@ export class UserService {
     private _http: HttpClient
   ) { }
 
-  getLoggedUser(): Observable<User>{
+  getLoggedUser(): Observable<User> {
     return this._http.get<User>(environment.restUrl + "users/profile", { withCredentials: true });
   }
 
-  getRole(): Observable<string> {
-    return this._http.get(environment.restUrl+'users/role', {withCredentials: true , responseType: 'text'});
-  }
-
-  getUsers(): Observable<User[]>{
+  getUsers(): Observable<User[]> {
     return this._http.get<User[]>(environment.restUrl + 'users', { withCredentials: true });
   }
 }

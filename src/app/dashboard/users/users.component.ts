@@ -33,7 +33,6 @@ export class UsersComponent implements OnInit {
     this._userService.getUsers().subscribe({
       next: (v) => {
         this.user = v;
-        console.log(this.user);
         this.dataSource = new MatTableDataSource(this.user);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

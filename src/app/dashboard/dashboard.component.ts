@@ -4,7 +4,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { delay } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/User';
-import { LoginService } from 'src/security/login.service';
+import { LoginService } from 'src/app/services/login.service';
+import { JwtService } from '../services/jwt.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,10 +18,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   user!: User;
 
   fullname!: string;
-  allowedSchedule = false;
-  allowedShowUsers = false;
-  allowedMyAppointments = false;
-  allowedReports = false;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -28,39 +25,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   constructor(
     private _observer: BreakpointObserver,
     private _userService: UserService,
-    private _loginService: LoginService) { }
+    private _loginService: LoginService
+  ) { }
 
   ngOnInit(): void {
-    this._userService.getRole().subscribe({
-      next: (v) => {
-        if (v === '[ROLE_ADMIN]') {
-          this.allowedSchedule = true;
-          this.allowedShowUsers = true;
-          this.allowedReports = true;
-          this.allowedMyAppointments = false;
-        }else if(v === '[ROLE_SECRETARY]'){
-          this.allowedSchedule = true;
-          this.allowedReports = true;
-          this.allowedShowUsers = false;
-          this.allowedMyAppointments = false;
-        }else if(v === '[ROLE_DOCTOR]'){
-          this.allowedSchedule = false;
-          this.allowedShowUsers = false;
-          this.allowedReports = false;
-          this.allowedMyAppointments = true;
-        }else if(v === '[ROLE_PUBLIC]'){
-          this.allowedSchedule = true;
-          this.allowedShowUsers = false;
-          this.allowedReports = false;
-          this.allowedMyAppointments = true;
-        }else{
-          console.log('Role Unknown');
-        }
-      },
-      error: (e) => {
-        console.log(e);
-      }
-    });
     this._userService.getLoggedUser().subscribe({
       next: (v) => {
         this.user = v;
@@ -88,10 +56,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   getUsers() {
     this._userService.getUsers().subscribe({
-      next: (v)=>{
+      next: (v) => {
         this.users = v;
       },
-      error: (e)=>{
+      error: (e) => {
         console.log(e);
       }
     });

@@ -1,69 +1,84 @@
 <mat-toolbar class="mat-elevation-z8">
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-        <mat-icon *ngIf="!sidenav.opened">
-            menu
-        </mat-icon>
-        <mat-icon *ngIf="sidenav.opened">
-            close
-        </mat-icon>
-    </button>
-    DENTAL CLINIC API
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  DENTAL CLINIC API
 </mat-toolbar>
 
 <mat-sidenav-container>
-    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      class="avatar mat-elevation-z8"
+      src="https://source.unsplash.com/c_GmwfHBDzk/200x200"
+    />
 
-        <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+    <h4 class="name">
+      {{ user?.firstName | titlecase }} {{ user?.lastName | titlecase }}
+    </h4>
+    <p class="designation">{{ user?.phone | uppercase }}</p>
 
-        <h4 class="name">{{ user?.firstName | titlecase }} {{ user?.lastName | titlecase }}</h4>
-        <p class="designation">{{ user?.phone | uppercase}}</p>
+    <mat-divider></mat-divider>
 
-        <mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>person</mat-icon>
+      <span routerLink="/dashboard/profile">Profile</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>info</mat-icon>
+      <span>About</span>
+    </button>
 
-        <button mat-button class="menu-button">
-            <mat-icon>home</mat-icon>
-            <span>Home</span>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon>person</mat-icon>
-            <span routerLink="/dashboard/profile">Profile</span>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon>info</mat-icon>
-            <span>About</span>
-        </button>
+    <mat-divider></mat-divider>
 
-        <mat-divider></mat-divider>
-
-        <button mat-button class="menu-button" *ngIf="allowedSchedule">
-            <mat-icon>calendar_today</mat-icon>
-            <span routerLink="/dashboard/schedule">Schedule</span>
-        </button>
-        <button mat-button class="menu-button" *ngIf="allowedShowUsers">
-            <mat-icon>account_box</mat-icon>
-            <span routerLink="/dashboard/users">Users</span>
-        </button>
-        <button mat-button class="menu-button" *ngIf="allowedMyAppointments">
-            <mat-icon>assignment</mat-icon>
-            <span routerLink="/dashboard/appointments">My Appointments</span>
-        </button>
-        <button mat-button class="menu-button" *ngIf="allowedReports">
-            <mat-icon>line_style</mat-icon>
-            <span routerLink="/dashboard/reports">Reports</span>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon>logout</mat-icon>
-            <span routerLink="/login" (click)="logout()">Logout</span>
-        </button>
-
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <div class="content mat-elevation-z8">
-            <div layout="row" layout-xs="column">
-                <div flex>
-                    <router-outlet></router-outlet>
-                </div>
-            </div>
+    <button
+      mat-button
+      class="menu-button"
+      *appHasRole="['ROLE_ADMIN', 'ROLE_SECRETARY', 'ROLE_PUBLIC']"
+    >
+      <mat-icon>calendar_today</mat-icon>
+      <span routerLink="/dashboard/schedule">Schedule</span>
+    </button>
+    <button mat-button class="menu-button" *appHasRole="['ROLE_ADMIN']">
+      <mat-icon>account_box</mat-icon>
+      <span routerLink="/dashboard/users">Users</span>
+    </button>
+    <button
+      mat-button
+      class="menu-button"
+      *appHasRole="['ROLE_SECRETARY', 'ROLE_DOCTOR', 'ROLE_PUBLIC']"
+    >
+      <mat-icon>assignment</mat-icon>
+      <span routerLink="/dashboard/appointments">My Appointments</span>
+    </button>
+    <button
+      mat-button
+      class="menu-button"
+      *appHasRole="['ROLE_ADMIN', 'ROLE_SECRETARY']"
+    >
+      <mat-icon>line_style</mat-icon>
+      <span routerLink="/dashboard/reports">Reports</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>logout</mat-icon>
+      <span routerLink="/login" (click)="logout()">Logout</span>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <div layout="row" layout-xs="column">
+        <div flex>
+          <router-outlet></router-outlet>
         </div>
-    </mat-sidenav-content>
+      </div>
+    </div>
+  </mat-sidenav-content>
 </mat-sidenav-container>

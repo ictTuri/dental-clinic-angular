@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this._authService.authenticationResultEvent.subscribe(
-      result => {
+      () => {
         const url = this._activatedRoute.snapshot.queryParams['requested'];
         if (url !== undefined) {
           this._route.navigateByUrl(url);
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this._route.navigate(['dashboard']);
         }
       });
+
     if (this._authService.existCookie()) {
       this._authService.authenticationResultEvent.emit(true);
     } else {

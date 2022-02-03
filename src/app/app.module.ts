@@ -24,14 +24,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { AuthService } from '../security/auth.service';
-import { LoginService } from '../security/login.service';
+import { LoginService } from './services/login.service';
 import { RezervePopupComponent } from './dashboard/schedule/rezerve-popup/rezerve-popup.component';
 import { UsersComponent } from './dashboard/users/users.component';
 import { UserComponent } from './dashboard/users/user/user.component';
 import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
 import { AppointmentComponent } from './dashboard/appointments/appointment/appointment.component';
 import { UserPopupComponent } from './dashboard/users/user-popup/user-popup.component';
-
+import { HasRoleDirective } from './directives/has-role.directive';
+import { ReportsComponent } from './dashboard/reports/reports.component';
+import { ReportComponent } from './dashboard/reports/report/report.component';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 const materialImports = [
   MatGridListModule,
@@ -56,7 +59,10 @@ const materialImports = [
     UserComponent,
     AppointmentsComponent,
     AppointmentComponent,
-    UserPopupComponent
+    UserPopupComponent,
+    HasRoleDirective,
+    ReportsComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +80,8 @@ const materialImports = [
     AuthGuardService,
     AppointmentService,
     AuthService,
-    LoginService
+    LoginService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService
   ],
   bootstrap: [AppComponent]
 })
