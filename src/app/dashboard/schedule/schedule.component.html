@@ -45,12 +45,12 @@
     <!-- Rezerve Button -->
     <ng-container matColumnDef="rezerve">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        <h3 *appHasRole="['[ROLE_PUBLIC]']">Rezerve</h3>
+        <h3 *appHasRole="['ROLE_PUBLIC']">Rezerve</h3>
       </th>
       <td mat-cell *matCellDef="let row">
         <button
           class="button-70"
-          *appHasRole="['[ROLE_PUBLIC]']"
+          *appHasRole="['ROLE_PUBLIC']"
           (click)="rezerveAppointement(row)"
         >
           <mat-icon>send</mat-icon>

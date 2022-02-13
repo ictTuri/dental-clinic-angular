@@ -23,6 +23,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AuthService } from '../security/auth.service';
 import { LoginService } from './services/login.service';
 import { RezervePopupComponent } from './dashboard/schedule/rezerve-popup/rezerve-popup.component';
@@ -35,6 +39,8 @@ import { HasRoleDirective } from './directives/has-role.directive';
 import { ReportsComponent } from './dashboard/reports/reports.component';
 import { ReportComponent } from './dashboard/reports/report/report.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatListModule } from '@angular/material/list';
 
 const materialImports = [
   MatGridListModule,
@@ -48,7 +54,11 @@ const materialImports = [
   MatButtonModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatFormFieldModule];
+  MatFormFieldModule,
+  MatMenuModule,
+  MatCardModule,
+  ScrollingModule,
+  MatTabsModule];
 
 @NgModule({
   declarations: [
@@ -71,7 +81,13 @@ const materialImports = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    materialImports
+    materialImports,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [
     RegisterService,

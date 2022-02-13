@@ -1,4 +1,3 @@
-import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/User';
 import { UserService } from 'src/app/services/user.service';
@@ -20,12 +19,12 @@ export class ProfileComponent implements OnInit {
     this.getUserData();
   }
 
-  getUserData(){
+  getUserData() {
     this._userService.getLoggedUser().subscribe({
-      next: (v)=>{
+      next: (v) => {
         this.user = v;
       },
-      error: (e)=>{
+      error: (e) => {
         console.log(e);
       }
     });

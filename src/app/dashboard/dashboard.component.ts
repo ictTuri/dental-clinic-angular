@@ -5,7 +5,6 @@ import { delay } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/User';
 import { LoginService } from 'src/app/services/login.service';
-import { JwtService } from '../services/jwt.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -41,7 +40,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this._observer
-      .observe(['(max-width: 800px)'])
+      .observe(['(max-width: 1000px)'])
       .pipe(delay(1))
       .subscribe((res) => {
         if (res.matches) {
@@ -67,5 +66,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   logout() {
     this._loginService.logout();
+  }
+
+  settings() {
+    console.log('clicked the settings')
   }
 }

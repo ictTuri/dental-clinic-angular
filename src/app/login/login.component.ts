@@ -12,6 +12,7 @@ import { LoginUser } from '../models/LoginUser';
 export class LoginComponent implements OnInit, OnDestroy {
 
   loginErrorMessage!: string;
+  hide: boolean = true;
 
   credential!: string;
   password!: string;

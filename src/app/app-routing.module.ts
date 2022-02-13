@@ -23,15 +23,15 @@ const routes: Routes = [
           role: ['ROLE_ADMIN', 'ROLE_SECRETARY', 'ROLE_PUBLIC']
         }
       },
-      { path: 'profile', component: ProfileComponent },
       {
         path: 'users', component: UsersComponent, canActivate: [RoleGuardService], data: {
           role: ['ROLE_ADMIN']
         }
       },
+      { path: 'profile', component: ProfileComponent },
       {
         path: 'appointments', component: AppointmentsComponent, canActivate: [RoleGuardService], data: {
-          role: ['ROLE_SECRETARY', 'ROLE_DOCTOR', 'ROLE_PUBLIC']
+          role: ['ROLE_ADMIN', 'ROLE_SECRETARY', 'ROLE_DOCTOR', 'ROLE_PUBLIC']
         }
       },
       {

@@ -2,7 +2,6 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginService } from '../app/services/login.service';
 import { LoginUser } from '../app/models/LoginUser';
-import { UserService } from 'src/app/services/user.service';
 
 @Injectable({
   providedIn: 'root'
