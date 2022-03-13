@@ -16,13 +16,11 @@ export class LoginService {
   ) { }
 
   validateUser(loginUser: LoginUser): Observable<string> {
-    return this._http.post<string>(environment.restUrl + '_login', loginUser, {
-      withCredentials: true
-    });
+    return this._http.post(environment.restUrl + '_login', loginUser, { responseType: 'text' });
   }
 
   logout() {
     this._cookie.delete('jwttoken');
-    return this._http.post(environment.restUrl + '_logout', { withCredentials: true, responseType: 'text' });
+    return this._http.post(environment.restUrl + '_logout', { responseType: 'text' });
   }
 }

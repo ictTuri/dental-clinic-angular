@@ -14,10 +14,10 @@ export class UserService {
   ) { }
 
   getLoggedUser(): Observable<User> {
-    return this._http.get<User>(environment.restUrl + "users/profile", { withCredentials: true });
+    return this._http.get<User>(environment.restUrl + "users/profile");
   }
 
   getUsers(): Observable<User[]> {
-    return this._http.get<User[]>(environment.restUrl + 'users', { withCredentials: true });
+    return this._http.get<User[]>(environment.restUrl + 'users');
   }
 }

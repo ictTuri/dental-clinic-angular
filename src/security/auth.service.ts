@@ -17,7 +17,8 @@ export class AuthService {
 
   authenticate(loginUser: LoginUser) {
     this._loginService.validateUser(loginUser).subscribe({
-      next: () => {
+      next: (v) => {
+        this._cookie.set('jwttoken', v.toString());
         this.authenticationResultEvent.emit(true);
       },
       error: (e) => {

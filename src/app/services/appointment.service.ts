@@ -34,10 +34,10 @@ export class AppointmentService {
   }
 
   freeSchedule(): Observable<Slot[]> {
-    return this._http.get<Slot[]>(environment.restUrl + 'visit/free-schedule', { withCredentials: true });
+    return this._http.get<Slot[]>(environment.restUrl + 'visit/free-schedule');
   }
 
   addSchedule(): Observable<any> {
-    return this._http.post(environment.restUrl + 'visit/rezerve', JSON.stringify(this.form.value), { withCredentials: true, headers: { 'Content-Type': 'application/json' } });
+    return this._http.post(environment.restUrl + 'visit/rezerve', JSON.stringify(this.form.value), { headers: { 'Content-Type': 'application/json' } });
   }
 }

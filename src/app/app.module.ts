@@ -41,6 +41,8 @@ import { ReportComponent } from './dashboard/reports/report/report.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpCustomInterceptor } from './services/http-custom-interceptor';
 
 const materialImports = [
   MatGridListModule,
@@ -97,6 +99,7 @@ const materialImports = [
     AppointmentService,
     AuthService,
     LoginService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpCustomInterceptor, multi: true },
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService
   ],
   bootstrap: [AppComponent]

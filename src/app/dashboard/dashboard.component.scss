@@ -28,10 +28,8 @@ mat-sidenav {
 
     justify-content: center;
     align-items: center;
-
     font-size: 2rem;
     color: rgb(158, 160, 161);
-
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
     border: 3px solid #004a9f;
@@ -67,10 +65,8 @@ mat-sidenav-container {
   height: calc(100vh - 98px);
   background-position: center;
   background-repeat: no-repeat;
-  // background-size: cover;
+  background-size: auto;
 }
-
-
 
 mat-divider {
     margin-top: 16px;

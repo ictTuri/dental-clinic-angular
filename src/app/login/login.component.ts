@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../security/auth.service';
 import { LoginUser } from '../models/LoginUser';
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private _authService: AuthService,
     private _route: Router,
+    private _cookie: CookieService,
     private _activatedRoute: ActivatedRoute
   ) { }
 
