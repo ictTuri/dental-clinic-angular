@@ -5,6 +5,8 @@ import { delay } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/User';
 import { LoginService } from 'src/app/services/login.service';
+import { HttpCustomInterceptor } from '../interceptor/http-custom-interceptor';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +26,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   constructor(
     private _observer: BreakpointObserver,
     private _userService: UserService,
-    private _loginService: LoginService
+    private _loginService: LoginService,
+    public _loader: LoaderService
   ) { }
 
   ngOnInit(): void {

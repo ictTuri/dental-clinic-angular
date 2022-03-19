@@ -1,0 +1,60 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Patient</mat-card-title>
+    <mat-card-subtitle>2021-01-02</mat-card-subtitle>
+    <br />
+    <div class="example-header-image"></div>
+    <mat-card-title>Doctor</mat-card-title>
+    <mat-card-subtitle>11:00 - 12:00</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <label>Date</label>
+    <h5>2021-01-02 From 11:00 to 12:00</h5>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-button
+      color="warn"
+      *appHasRole="['ROLE_PUBLIC', 'ROLE_DOCTOR']"
+    >
+      CANCEL
+    </button>
+
+    <button
+      mat-button
+      color="primary"
+      *appHasRole="['ROLE_ADMIN', 'ROLE_SECRETARY']"
+    >
+      APPROVE
+    </button>
+
+    <button mat-button color="accent" *appHasRole="['ROLE_DOCTOR']">
+      FEEDBACK
+    </button>
+
+    <button
+      mat-button
+      color="accent"
+      *appHasRole="['ROLE_ADMIN', 'ROLE_SECRETARY']"
+    >
+      CLOSE
+    </button>
+
+    <button mat-button *appHasRole="['ROLE_ADMIN', 'ROLE_SECRETARY']">
+      CHANGE TIME
+    </button>
+
+    <button mat-button *appHasRole="['ROLE_ADMIN', 'ROLE_SECRETARY']">
+      CHANGE DENTIST
+    </button>
+
+    <button mat-button color="primary" *appHasRole="['ROLE_PUBLIC']">
+      APPROVE NEW TIME
+    </button>
+
+    <button mat-button color="warn" *appHasRole="['ROLE_PUBLIC']">
+      REFUZE NEW TIME
+    </button>
+  </mat-card-actions>
+</mat-card>

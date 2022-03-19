@@ -14,8 +14,7 @@ export class RoleGuardService implements CanActivate {
     private _jwt: JwtService
   ) { }
 
-  canActivate(
-    route: ActivatedRouteSnapshot): boolean {
+  canActivate(route: ActivatedRouteSnapshot): boolean {
     if (this._authService.existCookie()) {
       const role = this._jwt.getRoleFromToken();
       if (route.data['role'] && route.data['role'].indexOf(role) === -1) {

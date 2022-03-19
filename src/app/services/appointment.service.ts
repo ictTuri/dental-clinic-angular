@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Appointment } from '../interfaces/Appointment';
 import { Slot } from '../interfaces/Slot';
 
 @Injectable({
@@ -33,10 +34,17 @@ export class AppointmentService {
     this.docs = row.doctors;
   }
 
+  //Get free scheduled dates
   freeSchedule(): Observable<Slot[]> {
     return this._http.get<Slot[]>(environment.restUrl + 'visit/free-schedule');
   }
 
+  //Get all appointement
+  allAppointments(): Observable<Appointment[]> {
+    return this._http.get<Appointment[]>(environment.restUrl + 'visit');
+  }
+
+  //Post a new visit
   addSchedule(): Observable<any> {
     return this._http.post(environment.restUrl + 'visit/rezerve', JSON.stringify(this.form.value), { headers: { 'Content-Type': 'application/json' } });
   }

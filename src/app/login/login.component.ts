@@ -47,14 +47,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   login() {
     const loginUser = new LoginUser(this.credential, this.password)
     this._authService.authenticate(loginUser);
-    this.subscription = this._authService.authenticationErrorMessage.subscribe(
-      (result: string) => {
-        if (result) {
-          this.loginErrorMessage = result;
-        } else {
-          this.loginErrorMessage = '';
-        }
+    this.subscription = this._authService.authenticationErrorMessage.subscribe({
+      next: () => {
+        this.loginErrorMessage = 'Bad Credentials!';
+      },
+      error: () => {
+        this.loginErrorMessage = '';
       }
+    }
     );
   }
 

@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
@@ -34,7 +35,6 @@ import { UsersComponent } from './dashboard/users/users.component';
 import { UserComponent } from './dashboard/users/user/user.component';
 import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
 import { AppointmentComponent } from './dashboard/appointments/appointment/appointment.component';
-import { UserPopupComponent } from './dashboard/users/user-popup/user-popup.component';
 import { HasRoleDirective } from './directives/has-role.directive';
 import { ReportsComponent } from './dashboard/reports/reports.component';
 import { ReportComponent } from './dashboard/reports/report/report.component';
@@ -42,7 +42,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpCustomInterceptor } from './services/http-custom-interceptor';
+import { HttpCustomInterceptor } from './interceptor/http-custom-interceptor';
+import { RegisterComponent } from './register/register.component';
 
 const materialImports = [
   MatGridListModule,
@@ -60,7 +61,8 @@ const materialImports = [
   MatMenuModule,
   MatCardModule,
   ScrollingModule,
-  MatTabsModule];
+  MatTabsModule,
+  MatProgressBarModule];
 
 @NgModule({
   declarations: [
@@ -71,10 +73,10 @@ const materialImports = [
     UserComponent,
     AppointmentsComponent,
     AppointmentComponent,
-    UserPopupComponent,
     HasRoleDirective,
     ReportsComponent,
-    ReportComponent
+    ReportComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

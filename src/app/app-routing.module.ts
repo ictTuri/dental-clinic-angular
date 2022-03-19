@@ -10,11 +10,19 @@ import { RoleGuardService } from 'src/security/role-guard.service';
 import { AppointmentComponent } from './dashboard/appointments/appointment/appointment.component';
 import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
 import { ReportsComponent } from './dashboard/reports/reports.component';
+import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './dashboard/users/user/user.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  //testing routes
+  { path: 'usersss', component: UserComponent, canActivate: [AuthGuardService] },
+  //end testing routes
+
+
+  { path: 'register', component: RegisterComponent },
   {
     path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService],
     children: [

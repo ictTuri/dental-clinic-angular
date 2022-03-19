@@ -2,6 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginService } from '../app/services/login.service';
 import { LoginUser } from '../app/models/LoginUser';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
   ) { }
 
   authenticate(loginUser: LoginUser) {
-    this._loginService.validateUser(loginUser).subscribe({
+    return this._loginService.validateUser(loginUser).subscribe({
       next: (v) => {
         this._cookie.set('jwttoken', v.toString());
         this.authenticationResultEvent.emit(true);
@@ -27,6 +28,8 @@ export class AuthService {
       }
     });
   }
+
+
 
   checkIfAlreadyAuthenticated() {
     if (this.existCookie()) {
